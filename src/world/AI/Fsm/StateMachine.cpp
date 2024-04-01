@@ -1,10 +1,8 @@
-#include <cstdint>
-#include "ForwardsZone.h"
-#include "Actor/BNpc.h"
 #include "StateMachine.h"
+#include "Actor/BNpc.h"
+#include "ForwardsZone.h"
 #include "State.h"
-
-#pragma once
+#include <cstdint>
 
 using namespace Sapphire;
 using namespace Sapphire::World;

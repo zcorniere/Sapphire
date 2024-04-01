@@ -25,94 +25,94 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef SAPPHIRE_MYSQL_UTIL_H
 #define SAPPHIRE_MYSQL_UTIL_H
 
+#include <cstdint>
 #include <iostream>
-#include <sstream>
 #include <mysql.h>
+#include <sstream>
 
 //using  MYSQL_FIELD = st_mysql_field;
 #ifndef UL64
 #ifdef _WIN32
-#define UL64(x) x##ui64
+#define UL64( x ) x##ui64
 #else
-#define UL64(x) x##ULL
+#define UL64( x ) x##ULL
 #endif
 #endif
 
 #ifndef L64
 #ifdef _WIN32
-#define L64(x) x##i64
+#define L64( x ) x##i64
 #else
-#define L64(x) x##LL
+#define L64( x ) x##LL
 #endif
 #endif
 
-#define NULLCSTR static_cast<char *>(0)
+#define NULLCSTR static_cast< char* >( 0 )
 
 
-#define bit_uint1korr(A)	(*(((uint8_t*)(A))))
+#define bit_uint1korr( A ) ( *( ( ( uint8_t* ) ( A ) ) ) )
 
-#define bit_uint2korr(A) ((uint16_t) (((uint16_t) (((unsigned char*) (A))[1])) +\
-                                   ((uint16_t) (((unsigned char*) (A))[0]) << 8)))
-#define bit_uint3korr(A) ((uint32_t) (((uint32_t) (((unsigned char*) (A))[2])) +\
-                                   (((uint32_t) (((unsigned char*) (A))[1])) << 8) +\
-                                   (((uint32_t) (((unsigned char*) (A))[0])) << 16)))
-#define bit_uint4korr(A) ((uint32_t) (((uint32_t) (((unsigned char*) (A))[3])) +\
-                                   (((uint32_t) (((unsigned char*) (A))[2])) << 8) +\
-                                   (((uint32_t) (((unsigned char*) (A))[1])) << 16) +\
-                                   (((uint32_t) (((unsigned char*) (A))[0])) << 24)))
-#define bit_uint5korr(A) ((uint64_t)(((uint32_t) (((unsigned char*) (A))[4])) +\
-                                    (((uint32_t) (((unsigned char*) (A))[3])) << 8) +\
-                                    (((uint32_t) (((unsigned char*) (A))[2])) << 16) +\
-                                   (((uint32_t) (((unsigned char*) (A))[1])) << 24)) +\
-                                    (((uint64_t) (((unsigned char*) (A))[0])) << 32))
-#define bit_uint6korr(A) ((uint64_t)(((uint32_t) (((unsigned char*) (A))[5])) +\
-                                    (((uint32_t) (((unsigned char*) (A))[4])) << 8) +\
-                                    (((uint32_t) (((unsigned char*) (A))[3])) << 16) +\
-                                    (((uint32_t) (((unsigned char*) (A))[2])) << 24)) +\
-                        (((uint64_t) (((uint32_t) (((unsigned char*) (A))[1])) +\
-                                    (((uint32_t) (((unsigned char*) (A))[0]) << 8)))) <<\
-                                     32))
-#define bit_uint7korr(A) ((uint64_t)(((uint32_t) (((unsigned char*) (A))[6])) +\
-                                    (((uint32_t) (((unsigned char*) (A))[5])) << 8) +\
-                                    (((uint32_t) (((unsigned char*) (A))[4])) << 16) +\
-                                   (((uint32_t) (((unsigned char*) (A))[3])) << 24)) +\
-                        (((uint64_t) (((uint32_t) (((unsigned char*) (A))[2])) +\
-                                    (((uint32_t) (((unsigned char*) (A))[1])) << 8) +\
-                                    (((uint32_t) (((unsigned char*) (A))[0])) << 16))) <<\
-                                     32))
-#define bit_uint8korr(A) ((uint64_t)(((uint32_t) (((unsigned char*) (A))[7])) +\
-                                    (((uint32_t) (((unsigned char*) (A))[6])) << 8) +\
-                                    (((uint32_t) (((unsigned char*) (A))[5])) << 16) +\
-                                    (((uint32_t) (((unsigned char*) (A))[4])) << 24)) +\
-                        (((uint64_t) (((uint32_t) (((unsigned char*) (A))[3])) +\
-                                    (((uint32_t) (((unsigned char*) (A))[2])) << 8) +\
-                                    (((uint32_t) (((unsigned char*) (A))[1])) << 16) +\
-                                    (((uint32_t) (((unsigned char*) (A))[0])) << 24))) <<\
-                                    32))
+#define bit_uint2korr( A ) ( ( uint16_t ) ( ( ( uint16_t ) ( ( ( unsigned char* ) ( A ) )[ 1 ] ) ) + \
+                                            ( ( uint16_t ) ( ( ( unsigned char* ) ( A ) )[ 0 ] ) << 8 ) ) )
+#define bit_uint3korr( A ) ( ( uint32_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 2 ] ) ) +          \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 1 ] ) ) << 8 ) + \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 0 ] ) ) << 16 ) ) )
+#define bit_uint4korr( A ) ( ( uint32_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 3 ] ) ) +           \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 2 ] ) ) << 8 ) +  \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 1 ] ) ) << 16 ) + \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 0 ] ) ) << 24 ) ) )
+#define bit_uint5korr( A ) ( ( uint64_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 4 ] ) ) +             \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 3 ] ) ) << 8 ) +    \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 2 ] ) ) << 16 ) +   \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 1 ] ) ) << 24 ) ) + \
+                             ( ( ( uint64_t ) ( ( ( unsigned char* ) ( A ) )[ 0 ] ) ) << 32 ) )
+#define bit_uint6korr( A ) ( ( uint64_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 5 ] ) ) +                \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 4 ] ) ) << 8 ) +       \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 3 ] ) ) << 16 ) +      \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 2 ] ) ) << 24 ) ) +    \
+                             ( ( ( uint64_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 1 ] ) ) +            \
+                                                ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 0 ] ) << 8 ) ) ) ) \
+                               << 32 ) )
+#define bit_uint7korr( A ) ( ( uint64_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 6 ] ) ) +                 \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 5 ] ) ) << 8 ) +        \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 4 ] ) ) << 16 ) +       \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 3 ] ) ) << 24 ) ) +     \
+                             ( ( ( uint64_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 2 ] ) ) +             \
+                                                ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 1 ] ) ) << 8 ) +    \
+                                                ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 0 ] ) ) << 16 ) ) ) \
+                               << 32 ) )
+#define bit_uint8korr( A ) ( ( uint64_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 7 ] ) ) +                 \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 6 ] ) ) << 8 ) +        \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 5 ] ) ) << 16 ) +       \
+                                            ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 4 ] ) ) << 24 ) ) +     \
+                             ( ( ( uint64_t ) ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 3 ] ) ) +             \
+                                                ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 2 ] ) ) << 8 ) +    \
+                                                ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 1 ] ) ) << 16 ) +   \
+                                                ( ( ( uint32_t ) ( ( ( unsigned char* ) ( A ) )[ 0 ] ) ) << 24 ) ) ) \
+                               << 32 ) )
 namespace Mysql
 {
-namespace Util
-{
-   long double strtold( const char *nptr, char **endptr );
-   long double strtonum( const std::string &str, int radix = 10 );
-   int64_t strtoll( const char* nptr, char** endptr );
-   uint64_t strtoull( const char* nptr, char** endptr );
-   int32_t mysql_type_to_datatype( const MYSQL_FIELD * const field );
+  namespace Util
+  {
+    long double strtold( const char* nptr, char** endptr );
+    long double strtonum( const std::string& str, int radix = 10 );
+    int64_t strtoll( const char* nptr, char** endptr );
+    uint64_t strtoull( const char* nptr, char** endptr );
+    int32_t mysql_type_to_datatype( const MYSQL_FIELD* const field );
 
-   typedef struct st_our_charset
-   {
-      unsigned int	nr;
-      const char		*name;
-      const char		*collation;
-      unsigned int	char_minlen;
-      unsigned int	char_maxlen;
-      const char		*comment;
-      unsigned int 	(*mb_charlen)(unsigned int c);
-      unsigned int 	(*mb_valid)(const char *start, const char *end);
-   } OUR_CHARSET;
+    typedef struct st_our_charset {
+      unsigned int nr;
+      const char* name;
+      const char* collation;
+      unsigned int char_minlen;
+      unsigned int char_maxlen;
+      const char* comment;
+      unsigned int ( *mb_charlen )( unsigned int c );
+      unsigned int ( *mb_valid )( const char* start, const char* end );
+    } OUR_CHARSET;
 
-   const OUR_CHARSET * find_charset(unsigned int charsetnr);
+    const OUR_CHARSET* find_charset( unsigned int charsetnr );
 
-}
-}
-#endif //SAPPHIRE_MYSQL_UTIL_H
+  }// namespace Util
+}// namespace Mysql
+#endif//SAPPHIRE_MYSQL_UTIL_H

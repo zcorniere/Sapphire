@@ -1,8 +1,8 @@
 #pragma once
 
 #include <cstdint>
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "CommonGen.h"
 #include "Vector3.h"
@@ -57,15 +57,13 @@ namespace Sapphire::Common
    */
   const uint16_t MAX_COMBO_LENGTH = 12500;
 
-  struct FFXIVARR_POSITION3_U16
-  {
+  struct FFXIVARR_POSITION3_U16 {
     uint16_t x;
     uint16_t y;
     uint16_t z;
   };
 
-  struct ActiveLand
-  {
+  struct ActiveLand {
     uint8_t ward;
     uint8_t plot;
   };
@@ -310,7 +308,7 @@ namespace Sapphire::Common
     GatheringPoint = 0x06,
     EventObj = 0x07,
     MountType = 0x08,
-    Companion = 0x09, // this probably actually means minion
+    Companion = 0x09,// this probably actually means minion
     Retainer = 0x0A,
     Area = 0x0B,
     Housing = 0x0C,
@@ -404,21 +402,21 @@ namespace Sapphire::Common
     // specials
 
     /*! Cannot equip gear to offhand slot */
-      MainTwoHandedWeapon = 13,
+    MainTwoHandedWeapon = 13,
     /*! Can be equipped in either main or offhand slot */
-      MainOrOffHand = 14, // unused
-    /*! Cannot equip gear to head */
-      BodyDisallowHead = 15,
+    MainOrOffHand = 14,// unused
+                       /*! Cannot equip gear to head */
+    BodyDisallowHead = 15,
     /*! Cannot equip gear to hands, legs and feet slots */
-      BodyDisallowHandsLegsFeet = 16,
+    BodyDisallowHandsLegsFeet = 16,
     /*! Cannot equip gear to feet slot */
-      LegsDisallowFeet = 18,
+    LegsDisallowFeet = 18,
     /*! Cannot equp gear to head, hands, legs, feet slots */
-      BodyDisallowAll = 19,
+    BodyDisallowAll = 19,
     /*! Cannot equip gear to hands slot */
-      BodyDisallowHands = 20,
+    BodyDisallowHands = 20,
     /*! Cannot equip gear to legs & feet slots */
-      BodyDisallowLegsFeet = 21,
+    BodyDisallowLegsFeet = 21,
   };
 
   enum InventoryType : uint16_t
@@ -434,7 +432,7 @@ namespace Sapphire::Common
     Currency = 2000,
     Crystal = 2001,
     //UNKNOWN_0 = 2003,
-      KeyItem = 2004,
+    KeyItem = 2004,
     HandIn = 2005,
     DamagedGear = 2007,
     //UNKNOWN_1 = 2008,
@@ -506,10 +504,9 @@ namespace Sapphire::Common
 
   };
 
-  struct HuntingLogEntry
-  {
+  struct HuntingLogEntry {
     uint8_t rank;
-    uint8_t entries[10][4];
+    uint8_t entries[ 10 ][ 4 ];
   };
 
   enum class UnlockEntry : uint16_t
@@ -537,7 +534,7 @@ namespace Sapphire::Common
     EmoteMadervilleDance = 30,
     ChallengeLog = 92,
     Desynth = 95,
-    SightseeingLogMenuItem = 97, //Needs another unlock ID to fill it out? Or relog?
+    SightseeingLogMenuItem = 97,//Needs another unlock ID to fill it out? Or relog?
     EmoteBombDance = 98,
     EmoteHuzzah = 225,
     EmoteEmbrace = 229,
@@ -649,8 +646,7 @@ namespace Sapphire::Common
   * Structural representation of the packet sent by the server
   * Send the entire StatusEffect list
   */
-  struct StatusWork
-  {
+  struct StatusWork {
     uint16_t Id;
     int16_t SystemParam;
     float Time;
@@ -663,26 +659,26 @@ namespace Sapphire::Common
     Gender = 0x01,
     Tribe = 0x04,
     Height = 0x03,
-    ModelType = 0x02, // Au Ra: changes horns/tails, everything else: seems to drastically change appearance (flip between two sets, odd/even numbers). sometimes retains hairstyle and other features
+    ModelType = 0x02,// Au Ra: changes horns/tails, everything else: seems to drastically change appearance (flip between two sets, odd/even numbers). sometimes retains hairstyle and other features
     FaceType = 0x05,
     HairStyle = 0x06,
-    HasHighlights = 0x07, // negative to enable, positive to disable
+    HasHighlights = 0x07,// negative to enable, positive to disable
     SkinColor = 0x08,
-    EyeColor = 0x09, // color of character's right eye
-    HairColor = 0x0A, // main color
-    HairColor2 = 0x0B, // highlights color
-    FaceFeatures = 0x0C, // seems to be a toggle, (-odd and +even for large face covering), opposite for small
+    EyeColor = 0x09,    // color of character's right eye
+    HairColor = 0x0A,   // main color
+    HairColor2 = 0x0B,  // highlights color
+    FaceFeatures = 0x0C,// seems to be a toggle, (-odd and +even for large face covering), opposite for small
     FaceFeaturesColor = 0x0D,
     Eyebrows = 0x0E,
-    EyeColor2 = 0x0F, // color of character's left eye
+    EyeColor2 = 0x0F,// color of character's left eye
     EyeShape = 0x10,
     NoseShape = 0x11,
     JawShape = 0x12,
-    LipStyle = 0x13, // lip colour depth and shape (negative values around -120 darker/more noticeable, positive no colour)
+    LipStyle = 0x13,// lip colour depth and shape (negative values around -120 darker/more noticeable, positive no colour)
     LipColor = 0x14,
     RaceFeatureSize = 0x15,
-    RaceFeatureType = 0x16, // negative or out of range tail shapes for race result in no tail (e.g. Au Ra has max of 4 tail shapes), incorrect value can crash client
-    BustSize = 0x17, // char creator allows up to max of 100, i set to 127 cause who wouldnt but no visible difference
+    RaceFeatureType = 0x16,// negative or out of range tail shapes for race result in no tail (e.g. Au Ra has max of 4 tail shapes), incorrect value can crash client
+    BustSize = 0x17,       // char creator allows up to max of 100, i set to 127 cause who wouldnt but no visible difference
     Facepaint = 0x18,
     FacepaintColor = 0x19,
 
@@ -710,8 +706,7 @@ namespace Sapphire::Common
     Run = 60,
   };
 
-  struct QuestData
-  {
+  struct QuestData {
     QuestData()
     {
       c.questId = 0;
@@ -735,7 +730,7 @@ namespace Sapphire::Common
         uint8_t sequence;
         uint8_t flags;
         uint8_t unknown1;
-        uint8_t vars[6];
+        uint8_t vars[ 6 ];
       } packed;
 
       struct
@@ -805,8 +800,6 @@ namespace Sapphire::Common
       //   uint16_t padding2;
       //} e;
     };
-
-
   };
 
   enum class ParamModifier : uint16_t
@@ -907,36 +900,36 @@ namespace Sapphire::Common
 
   enum struct ActionAspect : uint8_t
   {
-    None = 0,   // Doesn't imply unaspected
+    None = 0,// Doesn't imply unaspected
     Fire = 1,
     Ice = 2,
     Wind = 3,
     Stone = 4,
     Lightning = 5,
     Water = 6,
-    Unaspected = 7    // Doesn't imply magical unaspected damage - could be unaspected physical
+    Unaspected = 7// Doesn't imply magical unaspected damage - could be unaspected physical
   };
 
   enum class ActionPrimaryCostType : uint8_t
   {
-    None = 0, // ?
+    None = 0,// ?
     MagicPoints = 3,
     TacticsPoints = 5,
     TacticsPoints1 = 6,
     Sprint = 18,
-//    WARGauge = 22,
-//    DRKGauge = 25,
-//    AetherflowStack = 30,
-//    Status = 32,
-//    PLDGauge = 41,
-//    RDMGaugeBoth = 74,
-////  RDMGaugeBlack = 75, // not right?
-//    DRGGauge3Eyes = 76,
+    //    WARGauge = 22,
+    //    DRKGauge = 25,
+    //    AetherflowStack = 30,
+    //    Status = 32,
+    //    PLDGauge = 41,
+    //    RDMGaugeBoth = 74,
+    ////  RDMGaugeBlack = 75, // not right?
+    //    DRGGauge3Eyes = 76,
   };
 
   enum class ActionType : int8_t
   {
-    WeaponOverride = -1, // Needs more investigation (takes the damage type of the equipped weapon)?
+    WeaponOverride = -1,// Needs more investigation (takes the damage type of the equipped weapon)?
     Unknown_0 = 0,
     Slashing = 1,
     Piercing = 2,
@@ -1033,8 +1026,7 @@ namespace Sapphire::Common
     ShowItemName = 2,
   };
 
-  struct CalcResultParam
-  {
+  struct CalcResultParam {
     uint8_t Type;
     uint8_t Arg0;
     uint8_t Arg1;
@@ -1044,10 +1036,9 @@ namespace Sapphire::Common
     uint8_t Padding;
   };
 
-  struct CalcResult
-  {
-    CalcResultParam CalcResultTg[4];
-    CalcResultParam CalcResultCt[4];
+  struct CalcResult {
+    CalcResultParam CalcResultTg[ 4 ];
+    CalcResultParam CalcResultCt[ 4 ];
   };
 
   enum class ActionCollisionType : uint8_t
@@ -1059,7 +1050,7 @@ namespace Sapphire::Common
     Box,
     Unknown,
     Unknown2,
-    PersistentArea, // for when you set aoe like asylum
+    PersistentArea,// for when you set aoe like asylum
     Unknown3
   };
 
@@ -1102,10 +1093,10 @@ namespace Sapphire::Common
       Classjob,
       Unknown_4,// Materia related? id 304
       Unknown_5,// Hunt related? id 1259
-      Quest, // Quests that need all required args met
+      Quest,    // Quests that need all required args met
       Unknown_7,
       Unknown_8,// Map discovery related
-      QuestAny,// Quests that need any required args met
+      QuestAny, // Quests that need any required args met
       ChocoboRank,
       PvPRank,
       WolvesDenMatches,
@@ -1135,7 +1126,6 @@ namespace Sapphire::Common
 
         // Legacy subtypes - skipping
 
-        #pragma region Synth 1 -50 Recipes
         SynthWoodworkingLv01to10Recipes = 23,
         SynthWoodworkingLv11to20Recipes = 24,
         SynthWoodworkingLv21to30Recipes = 25,
@@ -1176,7 +1166,6 @@ namespace Sapphire::Common
         SynthCookingLv21to30Recipes = 60,
         SynthCookingLv31to40Recipes = 61,
         SynthCookingLv41to50Recipes = 62,
-        #pragma endregion
 
         // TODO: Map gathering subtypes 63 to 128
 
@@ -1289,7 +1278,7 @@ namespace Sapphire::Common
         // TODO: Map subtypes 372 to X
       };
     }
-  }
+  }// namespace Achievement
 
   union AchievementDataKey
   {
@@ -1373,13 +1362,13 @@ namespace Sapphire::Common
   enum PlayerCondition : uint8_t
   {
     None1 = 0,
-    HideUILockChar = 1, // as the name suggests, hides the ui and logs the char...
-    InCombat = 18, // in Combat, locks gearchange/return/teleport
+    HideUILockChar = 1,// as the name suggests, hides the ui and logs the char...
+    InCombat = 18,     // in Combat, locks gearchange/return/teleport
     Casting = 19,
     EventAction = 22,
-    InNpcEvent = 24, // when talking to an npc, locks ui giving "occupied" message
+    InNpcEvent = 24,// when talking to an npc, locks ui giving "occupied" message
 
- //   InNpcEvent1 = 10, // Sent together with InNpcEvent, when waiting for input? just a guess...
+    //   InNpcEvent1 = 10, // Sent together with InNpcEvent, when waiting for input? just a guess...
 
     BoundByDuty = 10,
     BetweenAreas = 21,
@@ -1400,7 +1389,7 @@ namespace Sapphire::Common
     Invalid = 0x0,
     InviteStart = 0x1,
     InviteComplete = 0x2,
-    Normal= 0x3,
+    Normal = 0x3,
     Freeze = 0x4,
   };
 
@@ -1543,7 +1532,6 @@ namespace Sapphire::Common
   };
 
 
-
   enum HouseExteriorSlot
   {
     HousePermit,
@@ -1679,12 +1667,11 @@ namespace Sapphire::Common
     INVALID_HOUSE_SIZE = 0xFF,
   };
 
-  struct LandIdent
-  {
-    int16_t landId; //00
-    int16_t wardNum; //02
-    int16_t territoryTypeId; //04
-    int16_t worldId; //06
+  struct LandIdent {
+    int16_t landId;         //00
+    int16_t wardNum;        //02
+    int16_t territoryTypeId;//04
+    int16_t worldId;        //06
   };
 
   union TerritoryIdent
@@ -1698,8 +1685,7 @@ namespace Sapphire::Common
     uint32_t id;
   };
 
-  struct House
-  {
+  struct House {
     uint8_t size;
     uint8_t status;
     uint8_t flags;
@@ -1707,60 +1693,54 @@ namespace Sapphire::Common
     uint32_t fcId;
     uint32_t fcCrestId;
     uint32_t fcCrestId1;
-    uint16_t patternIds[8];
-    uint8_t colors[8];
+    uint16_t patternIds[ 8 ];
+    uint8_t colors[ 8 ];
   };
 
-  struct Furniture
-  {
+  struct Furniture {
     uint16_t patternId;
     uint8_t color;
     uint8_t status;
     uint16_t dir;
-    uint16_t pos[3];
+    uint16_t pos[ 3 ];
   };
 
-  struct CharaLandData
-  {
+  struct CharaLandData {
     LandIdent landId;
     uint32_t landFlags;
     uint32_t unkown1;
   };
 
-  struct SimpleProfile
-  {
+  struct SimpleProfile {
     uint32_t price;
     uint8_t status;
-    uint8_t name[32];
-    uint8_t padding[3];
+    uint8_t name[ 32 ];
+    uint8_t padding[ 3 ];
   };
 
-  struct HousingLayout
-  {
+  struct HousingLayout {
     uint8_t storageIndex;
     uint8_t __padding1;
     uint16_t dir;
-    uint16_t pos[3];
+    uint16_t pos[ 3 ];
   };
 
-  struct HousingPersonalRoomProfileData
-  {
+  struct HousingPersonalRoomProfileData {
     uint64_t OnlineStatus;
     uint16_t TerritoryType;
     uint8_t Welcome;
-    char OwnerName[32];
-    char HouseCommentSimple[49];
+    char OwnerName[ 32 ];
+    char HouseCommentSimple[ 49 ];
   };
 
-  struct HouseBuddyStableData
-  {
+  struct HouseBuddyStableData {
     uint32_t LastTrainingTime;
     uint8_t Rank;
     uint8_t __padding1;
     uint16_t HouseBuddyRoomId;
-    uint8_t SkillLines[3];
-    char OwnerName[32];
-    char BuddyName[21];
+    uint8_t SkillLines[ 3 ];
+    char OwnerName[ 32 ];
+    char BuddyName[ 21 ];
   };
 
   enum HouseStatus : uint8_t
@@ -1786,8 +1766,7 @@ namespace Sapphire::Common
     IsFreeCompanyEstate = 16,
   };
 
-  struct PlayerTeleportQuery
-  {
+  struct PlayerTeleportQuery {
     uint16_t targetAetheryte;
     uint16_t cost;
   };
@@ -1829,7 +1808,7 @@ namespace Sapphire::Common
   {
     SingleTarget = 1,
     CircularAOE = 2,
-    Type3 = 3, // another single target? no idea how to call it
+    Type3 = 3,// another single target? no idea how to call it
     RectangularAOE = 4,
     CircularAoEPlaced = 7
   };
@@ -1848,8 +1827,7 @@ namespace Sapphire::Common
 
   using PlayerStateFlagList = std::vector< PlayerCondition >;
 
-  struct BNPCInstanceObject
-  {
+  struct BNPCInstanceObject {
     uint16_t territoryType;
     std::string bnpcName;
     uint32_t instanceId;
@@ -1901,10 +1879,9 @@ namespace Sapphire::Common
   /*
    * CellId is used to identify a cell in the cell container of a zone
    */
-  struct CellId
-  {
+  struct CellId {
     uint32_t x{ 0 };
     uint32_t y{ 0 };
   };
 
-}
+}// namespace Sapphire::Common

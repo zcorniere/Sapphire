@@ -1,29 +1,28 @@
 #include <filesystem>
 
-#include <Util/Util.h>
-#include <Network/PacketContainer.h>
 #include <Logging/Logger.h>
+#include <Network/PacketContainer.h>
 #include <Service.h>
+#include <Util/Util.h>
 
-#include "Network/GameConnection.h"
 #include "Actor/Player.h"
-#include "WorldServer.h"
-#include "Manager/PlayerMgr.h"
 #include "Manager/FreeCompanyMgr.h"
 #include "Manager/PartyMgr.h"
+#include "Manager/PlayerMgr.h"
+#include "Network/GameConnection.h"
+#include "WorldServer.h"
 
 #include "Session.h"
 
 using namespace Sapphire::World::Manager;
 namespace fs = std::filesystem;
 
-Sapphire::World::Session::Session( uint32_t entityId ) :
-  m_entityId( entityId ),
-  m_lastDataTime( Common::Util::getTimeSeconds() ),
-  m_lastSqlTime( Common::Util::getTimeSeconds() ),
-  m_isValid( false ),
-  m_isReplaying( false ),
-  m_lastPing( 0 )
+Sapphire::World::Session::Session( uint32_t entityId ) : m_entityId( entityId ),
+                                                         m_lastDataTime( Common::Util::getTimeSeconds() ),
+                                                         m_lastSqlTime( Common::Util::getTimeSeconds() ),
+                                                         m_isValid( false ),
+                                                         m_isReplaying( false ),
+                                                         m_lastPing( 0 )
 {
 }
 
@@ -145,8 +144,7 @@ void Sapphire::World::Session::startReplay( const std::string& path )
   }
 
   sort( loadedSets.begin(), loadedSets.end(),
-        []( const std::tuple< uint64_t, std::string >& left, const std::tuple< uint64_t, std::string >& right )
-        {
+        []( const std::tuple< uint64_t, std::string >& left, const std::tuple< uint64_t, std::string >& right ) {
           return std::get< 0 >( left ) < std::get< 0 >( right );
         } );
 
@@ -160,7 +158,7 @@ void Sapphire::World::Session::startReplay( const std::string& path )
     Logger::info( "Registering {0} for {1}, oldTime {2}", std::get< 1 >( set ), setTime - startTime, setTime );
   }
 
-  PlayerMgr::sendDebug( *getPlayer(), "Registered {0} sets for replay" ), m_replayCache.size();
+  PlayerMgr::sendDebug( *getPlayer(), "Registered {0} sets for replay", m_replayCache.size() );
   m_isReplaying = true;
 }
 
@@ -173,10 +171,10 @@ void Sapphire::World::Session::stopReplay()
 void Sapphire::World::Session::processReplay()
 {
   int at = 0;
-  test:
+test:
   for( const auto& set : m_replayCache )
   {
-    if( (std::get< 0 >( set ) ) <= Common::Util::getTimeMs() )
+    if( ( std::get< 0 >( set ) ) <= Common::Util::getTimeMs() )
     {
       m_pZoneConnection->injectPacket( std::get< 1 >( set ), *getPlayer().get() );
       m_replayCache.erase( m_replayCache.begin() + at );
@@ -185,7 +183,6 @@ void Sapphire::World::Session::processReplay()
       goto test;
     }
     at++;
-
   }
 
   if( m_replayCache.empty() )
@@ -238,7 +235,6 @@ void Sapphire::World::Session::update()
     m_pChatConnection->processInQueue();
     m_pChatConnection->processOutQueue();
   }
-
 }
 
 Sapphire::Entity::PlayerPtr Sapphire::World::Session::getPlayer() const

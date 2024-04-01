@@ -1,17 +1,19 @@
 #ifndef XIV_UTILS_BPARSE_H
 #define XIV_UTILS_BPARSE_H
 
-#include <type_traits>
 #include <iomanip>
 #include <sstream>
+#include <type_traits>
 #include <vector>
+
+#include <cstdint>
 
 namespace xivps3::utils::bparse
 {
 
   // Internal macro for byteswapping
   template< int N >
-  void byteswap_impl( char (& bytes)[N] )
+  void byteswap_impl( char ( &bytes )[ N ] )
   {
     for( auto p = std::begin( bytes ), end = std::end( bytes ) - 1; p < end; ++p, --end )
     {
@@ -23,7 +25,7 @@ namespace xivps3::utils::bparse
   template< typename T >
   T byteswap( T value )
   {
-    byteswap_impl( *reinterpret_cast<char ( * )[sizeof( T )]>(&value) );
+    byteswap_impl( *reinterpret_cast< char( * )[ sizeof( T ) ] >( &value ) );
     return value;
   }
 
@@ -32,7 +34,7 @@ namespace xivps3::utils::bparse
   void read( std::istream& i_stream, StructType& i_struct )
   {
     static_assert( std::is_pod< StructType >::value, "StructType must be a POD to be able to use read." );
-    i_stream.read( reinterpret_cast<char*>( &i_struct ), sizeof( StructType ) );
+    i_stream.read( reinterpret_cast< char* >( &i_struct ), sizeof( StructType ) );
   }
 
   // By default a type does not need reordering
@@ -96,6 +98,6 @@ namespace xivps3::utils::bparse
   // For cstrings
   std::string extract_cstring( std::istream& i_stream, const std::string& i_name );
 
-}
+}// namespace xivps3::utils::bparse
 
-#endif // XIV_UTILS_BPARSE_H
+#endif// XIV_UTILS_BPARSE_H
